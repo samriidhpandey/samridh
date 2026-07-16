@@ -7,6 +7,7 @@ import Background from "@/components/Background";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import CustomCursor from "@/components/CustomCursor";
+import CommandPalette from "@/components/CommandPalette";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
@@ -31,6 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CustomCursor />
+          <CommandPalette />
           <Background />
           <BootSequence />
           <FloatingNav />
