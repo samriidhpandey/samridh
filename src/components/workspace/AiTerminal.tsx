@@ -45,8 +45,12 @@ export default function AiTerminal() {
     }, 1200);
   };
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   const presetQuestions = [
@@ -81,7 +85,7 @@ export default function AiTerminal() {
         </div>
 
         {/* Terminal Body */}
-        <div className="flex-1 p-6 overflow-y-auto font-mono text-sm space-y-4">
+        <div ref={containerRef} className="flex-1 p-6 overflow-y-auto font-mono text-sm space-y-4">
           <AnimatePresence>
             {messages.map((msg) => (
               <motion.div
