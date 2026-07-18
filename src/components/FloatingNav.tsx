@@ -18,12 +18,12 @@ export default function FloatingNav() {
   ];
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+    <div className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95vw] sm:w-auto max-w-fit">
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 2 }} // delay to allow boot sequence
-        className="bg-surface/60 backdrop-blur-xl border border-border/50 rounded-full px-6 py-2 flex items-center gap-6 shadow-2xl relative overflow-hidden"
+        transition={{ duration: 0.8, delay: 2 }}
+        className="bg-surface/80 backdrop-blur-xl border border-border/50 rounded-full px-4 sm:px-6 py-2 flex items-center justify-between gap-3 sm:gap-6 shadow-2xl relative overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {/* Scroll Progress Bar at the bottom of the nav */}
         <motion.div
@@ -37,7 +37,7 @@ export default function FloatingNav() {
             <Link
               key={item.name}
               href={item.path}
-              className={`text-xs font-mono transition-colors duration-300 relative group tracking-wider py-1 ${isActive ? "text-primary" : "text-secondary hover:text-primary"}`}
+              className={`text-[10px] sm:text-xs font-mono transition-colors duration-300 relative group tracking-wider whitespace-nowrap py-1 ${isActive ? "text-primary" : "text-secondary hover:text-primary"}`}
             >
               {item.name}
               {isActive && (
@@ -50,8 +50,10 @@ export default function FloatingNav() {
           );
         })}
 
-        <div className="w-[1px] h-4 bg-border/50 mx-1"></div>
-        <ThemeToggle />
+        <div className="w-[1px] h-4 bg-border/50 mx-0 sm:mx-1 shrink-0"></div>
+        <div className="shrink-0">
+          <ThemeToggle />
+        </div>
       </motion.nav>
     </div>
   );
