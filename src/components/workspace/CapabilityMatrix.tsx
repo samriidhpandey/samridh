@@ -49,7 +49,7 @@ export default function CapabilityMatrix() {
       <div className="glass-panel rounded-xl p-2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
         
-        <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-border font-mono text-[10px] text-secondary uppercase tracking-widest relative z-10">
+        <div className="hidden sm:grid grid-cols-12 gap-4 px-6 py-4 border-b border-border font-mono text-[10px] text-secondary uppercase tracking-widest relative z-10">
           <div className="col-span-4">Capability</div>
           <div className="col-span-3">Domain</div>
           <div className="col-span-5 text-right">Status</div>
@@ -64,16 +64,16 @@ export default function CapabilityMatrix() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
               onMouseEnter={() => setHoveredSkill(skill.name)}
-              className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-border/30 hover:bg-white/[0.04] transition-colors duration-300 cursor-none group relative overflow-hidden"
+              className="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:gap-4 px-6 py-4 border-b border-border/30 hover:bg-white/[0.04] transition-colors duration-300 cursor-none group relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-[2px] h-full bg-accent scale-y-0 group-hover:scale-y-100 transition-transform origin-center duration-300"></div>
               
-              <div className="col-span-4 text-primary font-medium tracking-wide flex items-center gap-3">
+              <div className="sm:col-span-4 text-primary font-medium tracking-wide flex items-center gap-3">
                 <span className="w-1.5 h-1.5 bg-border group-hover:bg-accent group-hover:shadow-[0_0_10px_rgba(79,140,255,0.8)] transition-all duration-300 rounded-full"></span>
                 <span className="group-hover:translate-x-2 transition-transform duration-300">{skill.name}</span>
               </div>
-              <div className="col-span-3 text-secondary text-sm flex items-center group-hover:text-primary/70 transition-colors">{skill.type}</div>
-              <div className="col-span-5 text-right flex items-center justify-end">
+              <div className="sm:col-span-3 text-secondary text-xs sm:text-sm flex items-center pl-4 sm:pl-0">{skill.type}</div>
+              <div className="sm:col-span-5 text-left sm:text-right flex items-center justify-start sm:justify-end mt-1 sm:mt-0 pl-4 sm:pl-0">
                 <div className="flex gap-1.5">
                   {[...Array(5)].map((_, i) => (
                     <motion.div 

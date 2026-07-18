@@ -35,13 +35,13 @@ export default function SvgPipeline() {
         Neural_Pipeline.exe
       </motion.h2>
 
-      <div className="relative flex flex-col items-center pb-24">
+      <div className="relative flex flex-col items-start md:items-center pb-24">
         {/* SVG Track background */}
-        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-border/40"></div>
+        <div className="absolute top-0 bottom-0 left-6 md:left-1/2 -translate-x-1/2 w-[2px] bg-border/40"></div>
         
         {/* Animated glowing SVG path */}
         <motion.div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-accent via-accent to-success origin-top shadow-[0_0_15px_rgba(79,140,255,0.5)]"
+          className="absolute top-0 left-6 md:left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-accent via-accent to-success origin-top shadow-[0_0_15px_rgba(79,140,255,0.5)]"
           style={{ height: "100%", scaleY: pathLength }}
         />
 
@@ -50,7 +50,7 @@ export default function SvgPipeline() {
           return (
             <motion.div 
               key={node.title}
-              className="relative flex items-center justify-center py-12 w-full group"
+              className="relative flex items-center justify-start md:justify-center py-8 md:py-12 w-full group"
               initial={{ opacity: 0, x: isLeft ? -50 : 50, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-15%" }}
@@ -58,9 +58,10 @@ export default function SvgPipeline() {
             >
               {/* Node UI */}
               <div className={`
-                z-10 glass-panel px-8 py-5 rounded-xl shadow-2xl transition-all duration-500
+                z-10 glass-panel px-6 py-5 rounded-xl shadow-2xl transition-all duration-500
                 hover:border-accent hover:shadow-[0_0_30px_rgba(79,140,255,0.15)] hover:-translate-y-1
-                ${isLeft ? 'ml-auto mr-[calc(50%+4rem)] text-right' : 'mr-auto ml-[calc(50%+4rem)] text-left'}
+                w-[calc(100%-4rem)] ml-16 md:w-auto md:ml-0
+                ${isLeft ? 'md:ml-auto md:mr-[calc(50%+4rem)] md:text-right' : 'md:mr-auto md:ml-[calc(50%+4rem)] md:text-left'}
               `}>
                 <div className="text-primary font-medium tracking-tight text-lg mb-1">{node.title}</div>
                 <div className="text-sm text-secondary/70">{node.desc}</div>
@@ -69,13 +70,13 @@ export default function SvgPipeline() {
               
               {/* Central Glowing Dot */}
               <motion.div 
-                className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-[3px] border-border z-20 transition-all duration-500"
+                className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-[3px] border-border z-20 transition-all duration-500"
                 whileInView={{ backgroundColor: ["#050505", "#4F8CFF"], borderColor: ["#1C1C1C", "#4F8CFF"], scale: [1, 1.2, 1] }}
                 viewport={{ once: true, margin: "-15%" }}
                 transition={{ delay: 0.1, duration: 0.5 }}
               />
               <motion.div 
-                className="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-accent/20 blur-md z-10 opacity-0"
+                className="absolute left-6 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-accent/20 blur-md z-10 opacity-0"
                 whileInView={{ opacity: [0, 1, 0] }}
                 viewport={{ once: true, margin: "-15%" }}
                 transition={{ delay: 0.1, duration: 1.5, repeat: 1 }}
@@ -84,8 +85,9 @@ export default function SvgPipeline() {
               {/* Horizontal connection line to node */}
               <motion.div 
                 className={`
-                  absolute top-1/2 -translate-y-1/2 h-[2px] bg-border/60 group-hover:bg-accent/60 transition-colors w-16
-                  ${isLeft ? 'right-1/2 origin-left' : 'left-1/2 origin-right'}
+                  absolute top-1/2 -translate-y-1/2 h-[2px] bg-border/60 group-hover:bg-accent/60 transition-colors
+                  left-6 w-10 origin-left md:w-16
+                  ${isLeft ? 'md:left-auto md:right-1/2 md:origin-right' : 'md:left-1/2 md:origin-left'}
                 `}
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
