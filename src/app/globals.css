@@ -1,27 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FAFAFA;
-  --surface: #FFFFFF;
-  --border: #E5E5E5;
-  --primary: #171717;
-  --secondary: #525252;
-  --accent: #2563EB;
-  --success: #16A34A;
-  --warning: #D97706;
-  --error: #DC2626;
+  --background: #fafafa;
+  --surface: #ffffff;
+  --border: #e4e4e7;
+  --primary: #09090b;
+  --secondary: #71717a;
+  --accent: #6366f1;
+  --success: #06b6d4;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --neon-green: #10b981;
+  --neon-blue: #3b82f6;
 }
 
 .dark {
-  --background: #050505;
-  --surface: #0B0B0B;
-  --border: #1C1C1C;
-  --primary: #FFFFFF;
-  --secondary: #9CA3AF;
-  --accent: #4F8CFF;
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --error: #EF4444;
+  --background: #030712;
+  --surface: #0f172a;
+  --border: #1e293b;
+  --primary: #f8fafc;
+  --secondary: #94a3b8;
+  --accent: #8b5cf6;
+  --success: #2dd4bf;
+  --warning: #fbbf24;
+  --error: #f87171;
+  --neon-green: #4ade80;
+  --neon-blue: #38bdf8;
 }
 
 @theme inline {
@@ -34,6 +38,8 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --color-neon-green: var(--neon-green);
+  --color-neon-blue: var(--neon-blue);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }

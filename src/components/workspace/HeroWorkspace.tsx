@@ -45,34 +45,97 @@ export default function HeroWorkspace() {
       onMouseLeave={handleMouseLeave}
       className="relative w-full min-h-[90vh] flex flex-col items-center justify-center overflow-hidden py-20"
     >
-      {/* Animated Background Orb / Core */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <motion.div 
+      {/* AI Working Process Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-40 dark:opacity-30 overflow-hidden">
+        <motion.svg 
           style={{ x: orbX, y: orbY }}
-          className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] flex items-center justify-center"
+          className="absolute w-[800px] h-[600px] md:w-[1200px] md:h-[800px]" 
+          viewBox="0 0 1000 600"
         >
-          {/* Outer Glow */}
-          <div className="absolute inset-0 rounded-full bg-accent/20 blur-[100px] mix-blend-screen dark:mix-blend-lighten animate-pulse duration-3000"></div>
-          
-          {/* Inner Core */}
-          <motion.div 
-            animate={{ 
-              rotate: 360,
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ 
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full border border-accent/30 bg-gradient-to-br from-accent/10 to-transparent backdrop-blur-3xl shadow-[inset_0_0_50px_rgba(37,99,235,0.2)] dark:shadow-[inset_0_0_50px_rgba(79,140,255,0.2)] flex items-center justify-center"
-          >
-            <motion.div 
-              animate={{ rotate: -360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-success/40 border-dashed"
-            ></motion.div>
-          </motion.div>
-        </motion.div>
+          <defs>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0" />
+              <stop offset="50%" stopColor="var(--color-success)" stopOpacity="1" />
+              <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          {/* Static Connection Lines */}
+          <g stroke="currentColor" strokeWidth="1" className="text-secondary/30">
+            <path d="M 200,150 Q 350,150 500,100" fill="none" />
+            <path d="M 200,150 Q 350,250 500,300" fill="none" />
+            <path d="M 200,300 Q 350,300 500,300" fill="none" />
+            <path d="M 200,300 Q 350,200 500,100" fill="none" />
+            <path d="M 200,450 Q 350,450 500,500" fill="none" />
+            <path d="M 200,450 Q 350,350 500,300" fill="none" />
+            
+            <path d="M 500,100 Q 650,150 800,200" fill="none" />
+            <path d="M 500,300 Q 650,250 800,200" fill="none" />
+            <path d="M 500,500 Q 650,450 800,400" fill="none" />
+            <path d="M 500,300 Q 650,350 800,400" fill="none" />
+          </g>
+
+          {/* Animated Flowing Data */}
+          <motion.g stroke="url(#lineGrad)" strokeWidth="3" fill="none" filter="url(#glow)">
+            <motion.path 
+              d="M 200,150 Q 350,150 500,100" 
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0 }}
+            />
+            <motion.path 
+              d="M 200,300 Q 350,300 500,300" 
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 1 }}
+            />
+            <motion.path 
+              d="M 200,450 Q 350,350 500,300" 
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+            />
+            <motion.path 
+              d="M 500,100 Q 650,150 800,200" 
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 2 }}
+            />
+            <motion.path 
+              d="M 500,300 Q 650,350 800,400" 
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 2.5 }}
+            />
+          </motion.g>
+
+          {/* Network Nodes */}
+          <g fill="currentColor" className="text-secondary">
+            {/* Input Nodes */}
+            <circle cx="200" cy="150" r="4" />
+            <circle cx="200" cy="300" r="4" />
+            <circle cx="200" cy="450" r="4" />
+            
+            {/* Hidden Nodes */}
+            <circle cx="500" cy="100" r="6" className="text-accent" />
+            <circle cx="500" cy="300" r="6" className="text-accent" />
+            <circle cx="500" cy="500" r="6" className="text-accent" />
+            
+            {/* Output Nodes */}
+            <circle cx="800" cy="200" r="8" className="text-success" />
+            <circle cx="800" cy="400" r="8" className="text-success" />
+          </g>
+
+          {/* Output Node Pulsing Effects */}
+          <motion.circle cx="800" cy="200" r="14" fill="none" stroke="currentColor" strokeWidth="2" className="text-success" 
+            animate={{ scale: [1, 1.5, 1], opacity: [0.8, 0, 0.8] }} transition={{ duration: 2, repeat: Infinity }} />
+          <motion.circle cx="800" cy="400" r="14" fill="none" stroke="currentColor" strokeWidth="2" className="text-success" 
+            animate={{ scale: [1, 1.5, 1], opacity: [0.8, 0, 0.8] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }} />
+        </motion.svg>
       </div>
 
       {/* Main Content */}
@@ -96,9 +159,9 @@ export default function HeroWorkspace() {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-primary mb-6 leading-[1.1]"
         >
-          Architecting the <br className="hidden md:block" />
+          Engineering Scalable <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-success">
-            Future of AI
+            AI Solutions
           </span>
         </motion.h1>
 
